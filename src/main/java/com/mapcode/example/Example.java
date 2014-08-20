@@ -29,99 +29,99 @@ public class Example {
      * @param args Arguments (unused).
      */
     public static void main(final String[] args) throws UnknownTerritoryException {
+        exampleDisambiguateTerritory();
+        exampleGetTerritoryFromISOCode();
+        exampleDecode();
+        exampleEncode();
+        exampleEncodeInAllTerritories();
+    }
 
-        // Example 1 - Disambiguate MN in several conditions.
-        LOG.info("Example 1 (disambuate MN, Minnesota):");
+    private static void exampleGetTerritoryFromISOCode() throws UnknownTerritoryException {
+        LOG.info("Example: Get territory from ISO code");
 
-        final String iso = "MN";
-        LOG.info("ISO code {} without context : {}", iso, Territory.fromString(iso).toString());
-        LOG.info("ISO code {} in USA context  : {}", iso, Territory.fromString(iso, ParentTerritory.USA).toString());
-        LOG.info("ISO code {} in IND context  : {}", iso, Territory.fromString(iso, ParentTerritory.IND).toString());
-        LOG.info("ISO code {} in RUS context  : {}", iso, Territory.fromString(iso, ParentTerritory.RUS).toString());
+        // Print the full English name of the territory.
+        final Territory territory = Territory.fromString("NLD");
+        LOG.info("Territory {}: {}", territory.name(), territory.getFullName());
         LOG.info("");
+    }
 
-        // Example 2 - Get the Mapcode Territory for a territory abbreviation 'isocode',
-        // e.g. entered by the user.
+    private static void exampleDisambiguateTerritory() throws UnknownTerritoryException {
+        LOG.info("Example: (disambiguate code MN, which can be in USA and IND):");
 
-        final String isocode = "NLD";   // Abbreviation for The Netherlands
-        final Territory mapcodeTerritory = Territory.fromString(isocode);
-
-        // Example 3 - print the full English name of the territory.
-        LOG.info("Example 2/3:");
-        LOG.info("Territory {}: {}", isocode, mapcodeTerritory.getFullName());
+        final String isoCode = "MN";
+        LOG.info("ISO code {} without context : {}", isoCode,
+            Territory.fromString(isoCode).toString());
+        LOG.info("ISO code {} in USA context  : {}", isoCode,
+            Territory.fromString(isoCode, ParentTerritory.USA).toString());
+        LOG.info("ISO code {} in IND context  : {}", isoCode,
+            Territory.fromString(isoCode, ParentTerritory.IND).toString());
+        LOG.info("ISO code {} in RUS context  : {}", isoCode,
+            Territory.fromString(isoCode, ParentTerritory.RUS).toString());
         LOG.info("");
+    }
 
-        // Example 4 - Decode some Mapcodes in this territory.
-        LOG.info("Example 4 (Decode examples):");
-        String mapcode = "49.4V";
+    private static void exampleDecode() throws UnknownTerritoryException {
+        LOG.info("Example: Decode");
+
+        final Territory territory = Territory.fromString("NLD");
+        final String mapcode1 = "49.4V";
         try {
-            final Point p = Mapcode.decode(mapcode, mapcodeTerritory);
-            LOG.info("Mapcode {} in territory {} represents latitude {} , longitude {}",
-                mapcode, mapcodeTerritory, p.getLatDeg(), p.getLonDeg());
+            final Point p = Mapcode.decode(mapcode1, territory);
+            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
+                mapcode1, territory, p.getLatDeg(), p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("Mapcode {} in territory {} is invalid", mapcode, mapcodeTerritory);
+            LOG.info("Mapcode {} in territory {} is invalid", mapcode1, territory);
         }
 
-        mapcode = "49.4A";
+        final String mapcode2 = "49.4A";
         try {
-            final Point p = Mapcode.decode(mapcode, mapcodeTerritory);
-            LOG.info("Mapcode {} in territory {} represents latitude {} , longitude {}",
-                mapcode, mapcodeTerritory, p.getLatDeg(), p.getLonDeg());
+            final Point p = Mapcode.decode(mapcode2, territory);
+            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
+                mapcode2, territory, p.getLatDeg(), p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("Mapcode {} in territory {} is invalid", mapcode, mapcodeTerritory);
+            LOG.info("Mapcode {} in territory {} is invalid", mapcode2, territory);
         }
         LOG.info("");
+    }
 
-        // example 5 - Encode a coordinate in this territory.
-        LOG.info("Example 5 (Encode examples):");
-        double lat = 52.376514;
-        double lon = 4.908542;
+    private static void exampleEncode() throws UnknownTerritoryException {
+        LOG.info("Example: Encode");
 
-        // get all results, exclude "world"
-        List<MapcodeInfo> results = Mapcode.encode(lat, lon, mapcodeTerritory);
+        final Territory territory = Territory.NLD;
+        final double lat = 52.376514;
+        final double lon = 4.908542;
+        LOG.info("All possible Mapcodes in {} for latitude {}, longitude {}", territory.getFullName(), lat, lon);
+
+        // Get all results for territory NLD.
+        final List<MapcodeInfo> results = Mapcode.encode(lat, lon, territory);
         LOG.info("Point latitude {}, longitude {} has {} possible Mapcodes in {}",
-            lat, lon, results.size(), mapcodeTerritory.getFullName());
+            lat, lon, results.size(), territory.getFullName());
+
         int count = 1;
         for (final MapcodeInfo result : results) {
-            final String result_mapcode = result.getMapcode();
-            final int resultCcode = result.getTerritory().getTerritoryCode();
-
-            // let's give non-earth Mapcodes an explicit, non-ambiguous territory prefix
-            String resultPrefix = "";
-            if (result_mapcode.length() != 10) {
-                resultPrefix =
-                    Territory.fromTerritoryCode(resultCcode).toString(
-                        Territory.TerritoryNameFormat.MINIMAL_UNAMBIGUOUS) + ' ';
-            }
-            LOG.info("  Alternative {}: {} {}", count, resultPrefix, result_mapcode);
+            LOG.info("  Alternative {}: {} {}", count,
+                territory.toNameFormat(Territory.NameFormat.MINIMAL_UNAMBIGUOUS), result.getMapcode());
             ++count;
         }
         LOG.info("");
+    }
 
-        // example 6 - Encode a coordinate in ALL possible territories.
-        LOG.info("Example 6:");
-        lat = 26.87016;
-        lon = 75.847;
+    private static void exampleEncodeInAllTerritories() throws UnknownTerritoryException {
+        LOG.info("Example: Encode in all territories");
+
+        final double lat = 26.87016;
+        final double lon = 75.847;
         LOG.info("All possible Mapcodes in the world for latitude {}, longitude {}", lat, lon);
 
-        results = Mapcode.encode(lat, lon);
-        count = 1;
+        final List<MapcodeInfo> results = Mapcode.encode(lat, lon);
+        int count = 1;
         for (final MapcodeInfo result : results) {
-            final String result_mapcode = result.getMapcode();
-            final int result_ccode = result.getTerritory().getTerritoryCode();
-
-            // let's give non-earth Mapcodes an explicit, non-ambiguous territory prefix
-            String result_prefix = "";
-            if (result_mapcode.length() != 10) {
-                result_prefix =
-                    Territory.fromTerritoryCode(result_ccode).toString(
-                        Territory.TerritoryNameFormat.MINIMAL_UNAMBIGUOUS) +
-                        ' ';
-            }
-            LOG.info("  Alternative {}: {} {}", count, result_prefix, result_mapcode);
+            LOG.info("  Alternative {}: {} {}", count,
+                result.getTerritory().toNameFormat(Territory.NameFormat.MINIMAL), result.getMapcode());
             ++count;
         }
+        LOG.info("");
     }
 }
