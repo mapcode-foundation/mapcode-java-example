@@ -12,7 +12,11 @@ Library.
 To run the examples, simply execute:
 
 +----
+mvn clean install
 mvn exec:java -Dexec.mainClass="com.mapcode.example.Example"
 +----
+
+Don't forget to make sure you have the Mapcode JAR in your Maven
+repository, for example by building it locally.
 
 For more information, see: http://www.mapcode.com.
