@@ -55,27 +55,41 @@ public class Example {
         }
 
         /**
-         * The second example tries to decode an invalid Mapcode to a point which results
-         * in an exception being thrown.
+         * This second example shows you how to decode a Mapcode to a point, which already includes a
+         * territory name.
          */
-        final String mapcode2 = "49.4A";
+        final String mapcode2 = "NLD 49.4V";
         try {
-            final Point p = Mapcode.decode(mapcode2, territory);
+            final Point p = Mapcode.decode(mapcode2);
             LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
-                mapcode2, territory, p.getLatDeg(), p.getLonDeg());
+                mapcode1, territory, p.getLatDeg(), p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("Mapcode {} in territory {} is invalid, as expected in this example", mapcode2, territory);
+            LOG.info("This should never happen in this example as the Mapcode is valid.");
         }
 
         /**
-         * The third example tries to decode a valid international Mapcode without a territory context.
+         * The third example tries to decode an invalid Mapcode to a point which results
+         * in an exception being thrown.
+         */
+        final String mapcode3 = "49.4A";
+        try {
+            final Point p = Mapcode.decode(mapcode3, territory);
+            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
+                mapcode3, territory, p.getLatDeg(), p.getLonDeg());
+        }
+        catch (final UnknownMapcodeException ignored) {
+            LOG.info("Mapcode {} in territory {} is invalid, as expected in this example", mapcode3, territory);
+        }
+
+        /**
+         * The fourht example tries to decode a valid international Mapcode without a territory context.
          * This will succeed.
          */
-        final String mapcode3 = "PQ0PF.5M1H";
+        final String mapcode4 = "PQ0PF.5M1H";
         try {
-            final Point p = Mapcode.decode(mapcode3);
-            LOG.info("Mapcode {} represents latitude {}, longitude {}", mapcode3, p.getLatDeg(), p.getLonDeg());
+            final Point p = Mapcode.decode(mapcode4);
+            LOG.info("Mapcode {} represents latitude {}, longitude {}", mapcode4, p.getLatDeg(), p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
             LOG.info("This should never happen in this example as the Mapcode is valid.");
