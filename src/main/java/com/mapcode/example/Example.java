@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2014 Stichting Mapcode Foundation (http://www.mapcode.com)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -23,8 +23,6 @@ import com.mapcode.Point;
 import com.mapcode.Territory;
 import com.mapcode.UnknownMapcodeException;
 import com.mapcode.UnknownTerritoryException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -32,7 +30,6 @@ import java.util.List;
  * This class serves as an example of how to use the Mapcode Java library.
  */
 public class Example {
-    private static final Logger LOG = LoggerFactory.getLogger(Example.class);
 
     /**
      * Main method.
@@ -47,8 +44,8 @@ public class Example {
     }
 
     private static void exampleDecode() throws UnknownTerritoryException {
-        LOG.info("Example: Decoding Mapcodes to lat/lon points");
-        LOG.info("--------");
+        System.out.println("Example: Decoding Mapcodes to lat/lon points");
+        System.out.println("--------");
 
         /**
          * This example shows you how to decode a Mapcode to a point. The first example decodes
@@ -58,11 +55,12 @@ public class Example {
         final String mapcode1 = "49.4V";
         try {
             final Point p = Mapcode.decode(mapcode1, territory);
-            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
-                mapcode1, territory, p.getLatDeg(), p.getLonDeg());
+            System.out.println("Mapcode " + mapcode1 + " in territory " + territory + " represents latitude " + p
+                .getLatDeg() + ", " +
+                "longitude " + p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("This should never happen in this example as the Mapcode is valid.");
+            System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
         /**
@@ -72,11 +70,12 @@ public class Example {
         final String mapcode2 = "NLD 49.4V";
         try {
             final Point p = Mapcode.decode(mapcode2);
-            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
-                mapcode1, territory, p.getLatDeg(), p.getLonDeg());
+            System.out.println(
+                "Mapcode " + mapcode1 + " in territory " + territory + " represents latitude " + p.getLatDeg()
+                    + ", longitude " + p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("This should never happen in this example as the Mapcode is valid.");
+            System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
         /**
@@ -86,11 +85,13 @@ public class Example {
         final String mapcode3 = "49.4A";
         try {
             final Point p = Mapcode.decode(mapcode3, territory);
-            LOG.info("Mapcode {} in territory {} represents latitude {}, longitude {}",
-                mapcode3, territory, p.getLatDeg(), p.getLonDeg());
+            System.out.println(
+                "Mapcode " + mapcode3 + " in territory " + territory + " represents latitude " + p.getLatDeg()
+                    + ", longitude " + p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("Mapcode {} in territory {} is invalid, as expected in this example", mapcode3, territory);
+            System.out.println("Mapcode " + mapcode3 + " in territory " + territory + " is invalid, " +
+                "as expected in this example");
         }
 
         /**
@@ -100,17 +101,18 @@ public class Example {
         final String mapcode4 = "PQ0PF.5M1H";
         try {
             final Point p = Mapcode.decode(mapcode4);
-            LOG.info("Mapcode {} represents latitude {}, longitude {}", mapcode4, p.getLatDeg(), p.getLonDeg());
+            System.out.println(
+                "Mapcode " + mapcode4 + " represents latitude " + p.getLatDeg() + ", longitude " + p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
-            LOG.info("This should never happen in this example as the Mapcode is valid.");
+            System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
-        LOG.info("");
+        System.out.println("");
     }
 
     private static void exampleEncode() {
-        LOG.info("Example: Encoding lat/lon points to Mapcodes");
-        LOG.info("--------");
+        System.out.println("Example: Encoding lat/lon points to Mapcodes");
+        System.out.println("--------");
 
         /**
          * This example shows you how to encode a lat/lon point into a Mapcode.
@@ -122,30 +124,30 @@ public class Example {
          * First, we will try to get all possible Mapcodes, for all territories.
          */
         List<MapcodeInfo> results = Mapcode.encode(lat, lon);
-        LOG.info("There are {} Mapcodes in total for latitude {}, longitude {} world-wide",
-            results.size(), lat, lon);
+        System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
+            "longitude " + lon + " world-wide");
 
         int count = 1;
         for (final MapcodeInfo result : results) {
-            LOG.info("  #{}: {}", count, result);
+            System.out.println("  #" + count + ": " + result);
             ++count;
         }
-        LOG.info("");
+        System.out.println("");
 
         /**
          * Now, we will limit our search to a specific territory.
          */
         final Territory territory = Territory.NLD;
         results = Mapcode.encode(lat, lon, territory);
-        LOG.info("There are {} Mapcodes in total for latitude {}, longitude {} in {}",
-            results.size(), lat, lon, territory.getFullName());
+        System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
+            "longitude " + lon + " in " + territory.getFullName());
 
         count = 1;
         for (final MapcodeInfo result : results) {
-            LOG.info("  #{}: {}", count, result);
+            System.out.println("  #" + count + ": " + result);
             ++count;
         }
-        LOG.info("");
+        System.out.println("");
 
         /**
          * This example tries to encode a lat/lon to Mapcode, regardless of the territory.
@@ -155,14 +157,14 @@ public class Example {
         lon = 75.847;
 
         results = Mapcode.encode(lat, lon);
-        LOG.info("There are {} Mapcodes in total for latitude {}, longitude {} world-wide",
-            results.size(), lat, lon);
+        System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
+            "longitude " + lon + " world-wide");
         count = 1;
         for (final MapcodeInfo result : results) {
-            LOG.info("  #{}: {}", count, result);
+            System.out.println("  #" + count + ": " + result);
             ++count;
         }
-        LOG.info("");
+        System.out.println("");
 
         /**
          * Finally, we will see what happens when we try to encode a location that is not
@@ -170,30 +172,30 @@ public class Example {
          */
         results = Mapcode.encode(0, 0, territory);
         if (results.isEmpty()) {
-            LOG.info("  No Mapcode results found, as expected in this example");
+            System.out.println("  No Mapcode results found, as expected in this example");
         }
         else {
-            LOG.info("This should never happen in this example.");
+            System.out.println("This should never happen in this example.");
         }
-        LOG.info("");
+        System.out.println("");
     }
 
     private static void exampleGetTerritoryFromISOCode() throws UnknownTerritoryException {
-        LOG.info("Example: Get territory from an ISO code");
-        LOG.info("--------");
+        System.out.println("Example: Get territory from an ISO code");
+        System.out.println("--------");
 
         /**
          * This examples print the full English name of the territory, given an ISO code as a string,
          * which may be obtained from user input, for example.
          */
         final Territory territory = Territory.fromString("NLD");
-        LOG.info("Territory {}: {}", territory.name(), territory.getFullName());
-        LOG.info("");
+        System.out.println("Territory " + territory.name() + ": " + territory.getFullName());
+        System.out.println("");
     }
 
     private static void exampleDisambiguateTerritory() throws UnknownTerritoryException {
-        LOG.info("Example: Disambiguate a territory code");
-        LOG.info("--------");
+        System.out.println("Example: Disambiguate a territory code");
+        System.out.println("--------");
 
         /**
          * This example uses an ISO code which is ambiguous: MN. MN is a state in the USA (Minnesota)
@@ -203,25 +205,24 @@ public class Example {
         final String isoCode = "MN";
 
         // No disambiguation context.
-        LOG.info("ISO code {} without context : {}", isoCode,
-            Territory.fromString(isoCode).toString());
+        System.out.println("ISO code " + isoCode + " without context : " + Territory.fromString(isoCode).toString());
 
         // Disambiguation using a correct parent territory context.
-        LOG.info("ISO code {} in USA context  : {}", isoCode,
+        System.out.println("ISO code " + isoCode + " in USA context  : " +
             Territory.fromString(isoCode, ParentTerritory.USA).toString());
-        LOG.info("ISO code {} in IND context  : {}", isoCode,
+        System.out.println("ISO code " + isoCode + " in IND context  : " +
             Territory.fromString(isoCode, ParentTerritory.IND).toString());
 
         // Disambiguation using an incorrect parent territory context, which does not contains the state.
         // This call will actually fail and throw an exception because the disambiguation cannot be
         // completed.
         try {
-            LOG.info("ISO code {} in RUS context  : {}", isoCode,
-                Territory.fromString(isoCode, ParentTerritory.RUS).toString());
+            System.out.println("ISO code " + isoCode + " in RUS context  : " + Territory.fromString(isoCode,
+                ParentTerritory.RUS).toString());
         }
         catch (final UnknownTerritoryException ignored) {
-            LOG.info("ISO code {} in RUS context  : failed (as expected in this example)", isoCode);
+            System.out.println("ISO code " + isoCode + " in RUS context  : failed (as expected in this example)");
         }
-        LOG.info("");
+        System.out.println("");
     }
 }
