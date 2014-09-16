@@ -16,8 +16,6 @@
 
 package com.mapcode.example;
 
-import java.util.List;
-
 import com.mapcode.Mapcode;
 import com.mapcode.MapcodeInfo;
 import com.mapcode.ParentTerritory;
@@ -25,6 +23,8 @@ import com.mapcode.Point;
 import com.mapcode.Territory;
 import com.mapcode.UnknownMapcodeException;
 import com.mapcode.UnknownTerritoryException;
+
+import java.util.List;
 
 /**
  * This class serves as an example of how to use the Mapcode Java library.
@@ -71,9 +71,9 @@ public class Example {
         final String mapcode2 = "NLD 49.4V";
         try {
             final Point p = Mapcode.decode(mapcode2);
-			System.out.println("Mapcode " + mapcode2 + " in territory "
-					+ territory + " represents latitude " + p.getLatDeg()
-                    + ", longitude " + p.getLonDeg());
+            System.out.println("Mapcode " + mapcode2 + " in territory "
+                + territory + " represents latitude " + p.getLatDeg()
+                + ", longitude " + p.getLonDeg());
         }
         catch (final UnknownMapcodeException ignored) {
             System.out.println("This should never happen in this example as the Mapcode is valid.");
@@ -109,19 +109,20 @@ public class Example {
             System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
-		/**
-		 * The fifth example tries to decode a valid Mapcode that contains
-		 * Unicode characters. This will succeed.
-		 */
-		final String mapcode5 = "JPN チナ.8チ";
-		try {
-			final Point p = Mapcode.decode(mapcode5);
-			System.out.println("Mapcode " + mapcode5 + " represents latitude "
-					+ p.getLatDeg() + ", longitude " + p.getLonDeg());
-		} catch (final UnknownMapcodeException ignored) {
-			System.out
-					.println("This should never happen in this example as the Mapcode is valid.");
-		}
+        /**
+         * The fifth example tries to decode a valid Mapcode that contains
+         * Unicode characters. This will succeed.
+         */
+        final String mapcode5 = "JPN チナ.8チ";
+        try {
+            final Point p = Mapcode.decode(mapcode5);
+            System.out.println("Mapcode " + mapcode5 + " represents latitude "
+                + p.getLatDeg() + ", longitude " + p.getLonDeg());
+        }
+        catch (final UnknownMapcodeException ignored) {
+            System.out
+                .println("This should never happen in this example as the Mapcode is valid.");
+        }
 
         System.out.println("");
     }
