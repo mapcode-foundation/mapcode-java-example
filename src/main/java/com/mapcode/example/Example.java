@@ -29,6 +29,7 @@ import java.util.List;
 /**
  * This class serves as an example of how to use the Mapcode Java library.
  */
+@SuppressWarnings("UseOfSystemOutOrSystemErr")
 public class Example {
 
     /**

@@ -1,3 +1,7 @@
+-------------------------------------------------------------------------------
+MAPCODE JAVA LIBRARY
+-------------------------------------------------------------------------------
+
 Original C version created by Pieter Geelen. Work on Java version
 of the Mapcode library by Rijn Buve and Matthew Lowden.
 
@@ -15,3 +19,16 @@ Don't forget to make sure you have the Mapcode JAR in your Maven
 repository, for example by building it locally.
 
 For more information, see: http://www.mapcode.com.
+
+-------------------------------------------------------------------------------
+RELEASE NOTES
+-------------------------------------------------------------------------------
+
+1.33.2
+
+    Clean-up of release 1.33.2.
+    Added release notes.
+
+1.33.1
+
+    First release of Java library for MapCodes.
