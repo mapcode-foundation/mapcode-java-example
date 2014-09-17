@@ -4,11 +4,11 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mapcode</groupId>
-    <artifactId>mapcode-examples</artifactId>
+    <artifactId>mapcode-example</artifactId>
     <packaging>jar</packaging>
     <version>1.40</version>
 
-    <name>Mapcode Java Examples</name>
+    <name>Mapcode Java Example</name>
     <description>
         This package contains examples for the Mapcode Java library.
         For more info: http://www.mapcode.com
