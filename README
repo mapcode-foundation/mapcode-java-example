@@ -37,6 +37,10 @@ For more information, see: http://www.mapcode.com.
 RELEASE NOTES
 -------------------------------------------------------------------------------
 
+1.40
+
+    Added high precision Mapcodes.
+
 1.33.2
 
     Clean-up of release 1.33.2. Added release notes.
