@@ -17,7 +17,7 @@
 package com.mapcode.example;
 
 import com.mapcode.Mapcode;
-import com.mapcode.MapcodeInfo;
+import com.mapcode.MapcodeCodec;
 import com.mapcode.ParentTerritory;
 import com.mapcode.Point;
 import com.mapcode.Territory;
@@ -55,7 +55,7 @@ public class Example {
         final Territory territory = Territory.fromString("NLD");
         final String mapcode1 = "49.4V";
         try {
-            final Point p = Mapcode.decode(mapcode1, territory);
+            final Point p = MapcodeCodec.decode(mapcode1, territory);
             System.out.println("Mapcode " + mapcode1 + " in territory " + territory + " represents latitude " + p
                 .getLatDeg() + ", " +
                 "longitude " + p.getLonDeg());
@@ -70,7 +70,7 @@ public class Example {
          */
         final String mapcode2 = "NLD 49.4V";
         try {
-            final Point p = Mapcode.decode(mapcode2);
+            final Point p = MapcodeCodec.decode(mapcode2);
             System.out.println("Mapcode " + mapcode2 + " in territory "
                 + territory + " represents latitude " + p.getLatDeg()
                 + ", longitude " + p.getLonDeg());
@@ -85,7 +85,7 @@ public class Example {
          */
         final String mapcode3 = "49.4A";
         try {
-            final Point p = Mapcode.decode(mapcode3, territory);
+            final Point p = MapcodeCodec.decode(mapcode3, territory);
             System.out.println(
                 "Mapcode " + mapcode3 + " in territory " + territory + " represents latitude " + p.getLatDeg()
                     + ", longitude " + p.getLonDeg());
@@ -101,7 +101,7 @@ public class Example {
          */
         final String mapcode4 = "PQ0PF.5M1H";
         try {
-            final Point p = Mapcode.decode(mapcode4);
+            final Point p = MapcodeCodec.decode(mapcode4);
             System.out.println(
                 "Mapcode " + mapcode4 + " represents latitude " + p.getLatDeg() + ", longitude " + p.getLonDeg());
         }
@@ -115,7 +115,7 @@ public class Example {
          */
         final String mapcode5 = "JPN \u30c1\u30ca.8\u30c1";
         try {
-            final Point p = Mapcode.decode(mapcode5);
+            final Point p = MapcodeCodec.decode(mapcode5);
             System.out.println("Mapcode " + mapcode5 + " represents latitude "
                 + p.getLatDeg() + ", longitude " + p.getLonDeg());
         }
@@ -140,12 +140,12 @@ public class Example {
         /**
          * First, we will try to get all possible Mapcodes, for all territories.
          */
-        List<MapcodeInfo> results = Mapcode.encode(lat, lon);
+        List<Mapcode> results = MapcodeCodec.encode(lat, lon);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
             "longitude " + lon + " world-wide");
 
         int count = 1;
-        for (final MapcodeInfo result : results) {
+        for (final Mapcode result : results) {
             System.out.println("  #" + count + ": " + result);
             ++count;
         }
@@ -155,12 +155,12 @@ public class Example {
          * Now, we will limit our search to a specific territory.
          */
         final Territory territory = Territory.NLD;
-        results = Mapcode.encode(lat, lon, territory);
+        results = MapcodeCodec.encode(lat, lon, territory);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
             "longitude " + lon + " in " + territory.getFullName());
 
         count = 1;
-        for (final MapcodeInfo result : results) {
+        for (final Mapcode result : results) {
             System.out.println("  #" + count + ": " + result);
             ++count;
         }
@@ -173,11 +173,11 @@ public class Example {
         lat = 26.87016;
         lon = 75.847;
 
-        results = Mapcode.encode(lat, lon);
+        results = MapcodeCodec.encode(lat, lon);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
             "longitude " + lon + " world-wide");
         count = 1;
-        for (final MapcodeInfo result : results) {
+        for (final Mapcode result : results) {
             System.out.println("  #" + count + ": " + result);
             ++count;
         }
@@ -187,7 +187,7 @@ public class Example {
          * Finally, we will see what happens when we try to encode a location that is not
          * contained within a territory.
          */
-        results = Mapcode.encode(0, 0, territory);
+        results = MapcodeCodec.encode(0, 0, territory);
         if (results.isEmpty()) {
             System.out.println("  No Mapcode results found, as expected in this example");
         }
