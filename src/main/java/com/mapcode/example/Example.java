@@ -113,7 +113,7 @@ public class Example {
          * The fifth example tries to decode a valid Mapcode that contains
          * Unicode characters. This will succeed.
          */
-        final String mapcode5 = "JPN チナ.8チ";
+        final String mapcode5 = "JPN \u30c1\u30ca.8\u30c1";
         try {
             final Point p = Mapcode.decode(mapcode5);
             System.out.println("Mapcode " + mapcode5 + " represents latitude "
