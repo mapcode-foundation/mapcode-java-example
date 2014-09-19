@@ -1,5 +1,4 @@
-Mapcode Library for Java - Example Code
-====
+# Mapcode Library for Java - Example Code
 
 Copyright (C) 2014 Stichting Mapcode Foundation (http://www.mapcode.com)
 
@@ -10,18 +9,15 @@ Library.
 
 To run the examples, simply execute:
 
-+----
-mvn clean install
-mvn exec:java -Dexec.mainClass="com.mapcode.example.Example"
-+----
+    mvn clean install
+    mvn exec:java -Dexec.mainClass="com.mapcode.example.Example"
 
 Don't forget to make sure you have the Mapcode JAR in your Maven
 repository, for example by building it locally.
 
 For more information, see: http://www.mapcode.com.
 
-Release Notes
-====
+## Release Notes
 
 * 1.40
 
@@ -35,8 +31,7 @@ Release Notes
 
     First release of Java library for MapCodes.
 
-License
-====
+## License
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
