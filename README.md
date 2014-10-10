@@ -19,6 +19,10 @@ For more information, see: http://www.mapcode.com.
 
 ## Release Notes
 
+* 1.40.2
+
+    Updated to version Mapcode Java Library 1.40.2.
+
 * 1.40
 
     Added high precision Mapcodes.
