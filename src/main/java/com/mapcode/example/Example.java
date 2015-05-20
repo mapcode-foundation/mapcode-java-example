@@ -16,13 +16,7 @@
 
 package com.mapcode.example;
 
-import com.mapcode.Mapcode;
-import com.mapcode.MapcodeCodec;
-import com.mapcode.ParentTerritory;
-import com.mapcode.Point;
-import com.mapcode.Territory;
-import com.mapcode.UnknownMapcodeException;
-import com.mapcode.UnknownTerritoryException;
+import com.mapcode.*;
 
 import java.util.List;
 
@@ -31,6 +25,10 @@ import java.util.List;
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 public class Example {
+
+    private Example() {
+        // Empty.
+    }
 
     /**
      * Main method.
@@ -57,10 +55,9 @@ public class Example {
         try {
             final Point p = MapcodeCodec.decode(mapcode1, territory);
             System.out.println("Mapcode " + mapcode1 + " in territory " + territory + " represents latitude " + p
-                .getLatDeg() + ", " +
-                "longitude " + p.getLonDeg());
-        }
-        catch (final UnknownMapcodeException ignored) {
+                    .getLatDeg() + ", " +
+                    "longitude " + p.getLonDeg());
+        } catch (final UnknownMapcodeException ignored) {
             System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
@@ -72,10 +69,9 @@ public class Example {
         try {
             final Point p = MapcodeCodec.decode(mapcode2);
             System.out.println("Mapcode " + mapcode2 + " in territory "
-                + territory + " represents latitude " + p.getLatDeg()
-                + ", longitude " + p.getLonDeg());
-        }
-        catch (final UnknownMapcodeException ignored) {
+                    + territory + " represents latitude " + p.getLatDeg()
+                    + ", longitude " + p.getLonDeg());
+        } catch (final UnknownMapcodeException ignored) {
             System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
@@ -87,12 +83,11 @@ public class Example {
         try {
             final Point p = MapcodeCodec.decode(mapcode3, territory);
             System.out.println(
-                "Mapcode " + mapcode3 + " in territory " + territory + " represents latitude " + p.getLatDeg()
-                    + ", longitude " + p.getLonDeg());
-        }
-        catch (final UnknownMapcodeException ignored) {
+                    "Mapcode " + mapcode3 + " in territory " + territory + " represents latitude " + p.getLatDeg()
+                            + ", longitude " + p.getLonDeg());
+        } catch (final UnknownMapcodeException ignored) {
             System.out.println("Mapcode " + mapcode3 + " in territory " + territory + " is invalid, " +
-                "as expected in this example");
+                    "as expected in this example");
         }
 
         /**
@@ -103,9 +98,8 @@ public class Example {
         try {
             final Point p = MapcodeCodec.decode(mapcode4);
             System.out.println(
-                "Mapcode " + mapcode4 + " represents latitude " + p.getLatDeg() + ", longitude " + p.getLonDeg());
-        }
-        catch (final UnknownMapcodeException ignored) {
+                    "Mapcode " + mapcode4 + " represents latitude " + p.getLatDeg() + ", longitude " + p.getLonDeg());
+        } catch (final UnknownMapcodeException ignored) {
             System.out.println("This should never happen in this example as the Mapcode is valid.");
         }
 
@@ -117,11 +111,10 @@ public class Example {
         try {
             final Point p = MapcodeCodec.decode(mapcode5);
             System.out.println("Mapcode " + mapcode5 + " represents latitude "
-                + p.getLatDeg() + ", longitude " + p.getLonDeg());
-        }
-        catch (final UnknownMapcodeException ignored) {
+                    + p.getLatDeg() + ", longitude " + p.getLonDeg());
+        } catch (final UnknownMapcodeException ignored) {
             System.out
-                .println("This should never happen in this example as the Mapcode is valid.");
+                    .println("This should never happen in this example as the Mapcode is valid.");
         }
 
         System.out.println("");
@@ -142,7 +135,7 @@ public class Example {
          */
         List<Mapcode> results = MapcodeCodec.encode(lat, lon);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
-            "longitude " + lon + " world-wide");
+                "longitude " + lon + " world-wide");
 
         int count = 1;
         for (final Mapcode result : results) {
@@ -157,7 +150,7 @@ public class Example {
         final Territory territory = Territory.NLD;
         results = MapcodeCodec.encode(lat, lon, territory);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
-            "longitude " + lon + " in " + territory.getFullName());
+                "longitude " + lon + " in " + territory.getFullName());
 
         count = 1;
         for (final Mapcode result : results) {
@@ -175,7 +168,7 @@ public class Example {
 
         results = MapcodeCodec.encode(lat, lon);
         System.out.println("There are " + results.size() + " Mapcodes in total for latitude " + lat + ", " +
-            "longitude " + lon + " world-wide");
+                "longitude " + lon + " world-wide");
         count = 1;
         for (final Mapcode result : results) {
             System.out.println("  #" + count + ": " + result);
@@ -190,8 +183,7 @@ public class Example {
         results = MapcodeCodec.encode(0, 0, territory);
         if (results.isEmpty()) {
             System.out.println("  No Mapcode results found, as expected in this example");
-        }
-        else {
+        } else {
             System.out.println("This should never happen in this example.");
         }
         System.out.println("");
@@ -226,18 +218,17 @@ public class Example {
 
         // Disambiguation using a correct parent territory context.
         System.out.println("ISO code " + isoCode + " in USA context  : " +
-            Territory.fromString(isoCode, ParentTerritory.USA).toString());
+                Territory.fromString(isoCode, ParentTerritory.USA).toString());
         System.out.println("ISO code " + isoCode + " in IND context  : " +
-            Territory.fromString(isoCode, ParentTerritory.IND).toString());
+                Territory.fromString(isoCode, ParentTerritory.IND).toString());
 
         // Disambiguation using an incorrect parent territory context, which does not contains the state.
         // This call will actually fail and throw an exception because the disambiguation cannot be
         // completed.
         try {
             System.out.println("ISO code " + isoCode + " in RUS context  : " + Territory.fromString(isoCode,
-                ParentTerritory.RUS).toString());
-        }
-        catch (final UnknownTerritoryException ignored) {
+                    ParentTerritory.RUS).toString());
+        } catch (final UnknownTerritoryException ignored) {
             System.out.println("ISO code " + isoCode + " in RUS context  : failed (as expected in this example)");
         }
         System.out.println("");
