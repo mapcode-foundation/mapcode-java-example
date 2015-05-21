@@ -91,7 +91,7 @@ public class Example {
         }
 
         /**
-         * The fourht example tries to decode a valid international Mapcode without a territory context.
+         * The fourth example tries to decode a valid international Mapcode without a territory context.
          * This will succeed.
          */
         final String mapcode4 = "PQ0PF.5M1H";
