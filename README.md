@@ -21,7 +21,7 @@ For more information, see: http://www.mapcode.com.
 
 * 1.50.0.0 - 1.50.2.0
 
-    Updated t new Mapcode Java Library versions.
+    Updated to new Mapcode Java Library versions.
     
 * 1.40.2
 
