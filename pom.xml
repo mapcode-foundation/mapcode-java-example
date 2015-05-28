@@ -6,7 +6,7 @@
     <groupId>com.mapcode</groupId>
     <artifactId>mapcode-example</artifactId>
     <packaging>jar</packaging>
-    <version>1.50.2.1</version>
+    <version>1.50.3.0</version>
 
     <name>Mapcode Java Example</name>
     <description>
