@@ -218,16 +218,16 @@ public class Example {
 
         // Disambiguation using a correct parent territory context.
         System.out.println("ISO code " + isoCode + " in USA context  : " +
-                Territory.fromString(isoCode, ParentTerritory.USA).toString());
+                Territory.fromString(isoCode, Territory.USA).toString());
         System.out.println("ISO code " + isoCode + " in IND context  : " +
-                Territory.fromString(isoCode, ParentTerritory.IND).toString());
+                Territory.fromString(isoCode, Territory.IND).toString());
 
         // Disambiguation using an incorrect parent territory context, which does not contains the state.
         // This call will actually fail and throw an exception because the disambiguation cannot be
         // completed.
         try {
             System.out.println("ISO code " + isoCode + " in RUS context  : " + Territory.fromString(isoCode,
-                    ParentTerritory.RUS).toString());
+                    Territory.RUS).toString());
         } catch (final UnknownTerritoryException ignored) {
             System.out.println("ISO code " + isoCode + " in RUS context  : failed (as expected in this example)");
         }
