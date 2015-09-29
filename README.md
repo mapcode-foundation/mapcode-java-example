@@ -19,9 +19,9 @@ For more information, see: http://www.mapcode.com.
 
 ## Release Notes
 
-* 2.2.1
+* 2.2.1-2.2.0
 
-    Updated to new Mapcode Java Library version 2.2.1.
+    Updated to new Mapcode Java Library version 2.2.x.
 
 * 2.0.0.0 - 2.0.1.0
 
