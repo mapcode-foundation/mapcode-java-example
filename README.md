@@ -19,7 +19,7 @@ For more information, see: http://www.mapcode.com.
 
 ## Release Notes
 
-* 2.2.1-2.2.0
+* 2.2.1-2.2.3
 
     Updated to new Mapcode Java Library version 2.2.x.
 
