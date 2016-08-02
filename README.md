@@ -1,8 +1,9 @@
-# Mapcode Library for Java - Example Code
+# Example Project for Mapcode Library for Java
 
-Copyright (C) 2014 Stichting Mapcode Foundation (http://www.mapcode.com)
+[![Build Status](https://img.shields.io/travis/mapcode-foundation/mapcode-java-example.svg?maxAge=3600)](https://travis-ci.org/mapcode-foundation/mapcode-java-example)
+[![License](http://img.shields.io/badge/license-APACHE2-blue.svg)]()
 
-----
+**Copyright (C) 2014-2016 Stichting Mapcode Foundation (http://www.mapcode.com)**
 
 This Java project contains example code of how to use the Mapcode
 Library.
@@ -19,33 +20,33 @@ For more information, see: http://www.mapcode.com.
 
 ## Release Notes
 
-* 2.2.1-2.2.3
+### 2.2.1-2.2.3
 
-    Updated to new Mapcode Java Library version 2.2.x.
+* Updated to new Mapcode Java Library version 2.2.x.
 
-* 2.0.0.0 - 2.0.1.0
+### 2.0.0.0 - 2.0.1.0
 
-    Updated to new Mapcode Java Library version 2.0.x.
+* Updated to new Mapcode Java Library version 2.0.x.
 
-* 1.50.0.0 - 1.50.3.0
+### 1.50.0.0 - 1.50.3.0
 
-    Updated to new Mapcode Java Library versions.
+* Updated to new Mapcode Java Library versions.
 
-* 1.40.2
+### 1.40.2
 
-    Updated to Mapcode Java Library version 1.40.2.
+* Updated to Mapcode Java Library version 1.40.2.
 
-* 1.40
+### 1.40
 
-    Added high precision Mapcodes.
+* Added high precision Mapcodes.
 
-* 1.33.2
+### 1.33.2
 
-    Clean-up of release 1.33.2. Added release notes.
+* Clean-up of release 1.33.2. Added release notes.
 
-* 1.33.1
+### 1.33.1
 
-    First release of Java library for MapCodes.
+* First release of Java library for MapCodes.
 
 ## License
 
