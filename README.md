@@ -20,6 +20,10 @@ For more information, see: http://www.mapcode.com.
 
 ## Release Notes
 
+### 2.3.0
+
+* Updated to Java library 2.3.0
+
 ### 2.2.4
 
 * Updated to Java library 2.2.4.

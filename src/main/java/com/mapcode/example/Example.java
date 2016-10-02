@@ -16,7 +16,12 @@
 
 package com.mapcode.example;
 
-import com.mapcode.*;
+import com.mapcode.Mapcode;
+import com.mapcode.MapcodeCodec;
+import com.mapcode.Point;
+import com.mapcode.Territory;
+import com.mapcode.UnknownMapcodeException;
+import com.mapcode.UnknownTerritoryException;
 
 import java.util.List;
 
