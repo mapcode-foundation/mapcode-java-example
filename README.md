@@ -37,9 +37,9 @@ of the Mapcode library by Rijn Buve and Matthew Lowden.
 
 ## Release Notes
 
-### 2.3.0
+### 2.3.0 - 2.3.1
 
-* Updated to Java library 2.3.0
+* Updated to Java library 2.3.0, 2.3.1.
 
 ### 2.2.4
 
