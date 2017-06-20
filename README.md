@@ -1,6 +1,6 @@
 # Example Project for Mapcode Library for Java
 
-[![Build Status](https://img.shields.io/travis/mapcode-foundation/mapcode-java-example.svg?maxAge=3600)](https://travis-ci.org/mapcode-foundation/mapcode-java-example)
+[![Build Status](https://img.shields.io/travis/mapcode-foundation/mapcode-java-example.svg?maxAge=3600&branch=master)](https://travis-ci.org/mapcode-foundation/mapcode-java-example)
 [![License](http://img.shields.io/badge/license-APACHE2-blue.svg)]()
 
 **Copyright (C) 2014-2016 Stichting Mapcode Foundation (http://www.mapcode.com)**
