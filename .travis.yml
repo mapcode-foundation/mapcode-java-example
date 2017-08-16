@@ -5,9 +5,12 @@ sudo: false
 jdk:
     - oraclejdk8
 
-install: mvn install -DskipTests
+install:
+    - export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
+    - mvn install -DskipTests
 
 script:
+    - export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
     - mvn verify
 
 cache:
