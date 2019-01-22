@@ -27,10 +27,10 @@
         <jdk.version>1.6</jdk.version>
 
         <!-- Modules. -->
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 
         <!-- Packages. -->
-        <mapcode.version>2.4.7</mapcode.version>
+        <mapcode.version>2.4.8</mapcode.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.25</slf4j.version>
     </properties>
